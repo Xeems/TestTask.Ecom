@@ -19,7 +19,7 @@ export default function ProductCard({
     }
 
     return (
-        <div className="flex w-60 flex-col items-center gap-y-4 rounded-xl border border-solid border-gray-200 bg-white p-4">
+        <div className="flex flex-col items-center gap-y-4 rounded-xl border border-solid border-gray-200 bg-white p-4">
             <img
                 src={`/product-images/${image}`}
                 className="w-full object-cover"
