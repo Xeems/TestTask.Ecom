@@ -117,7 +117,7 @@ export default function Modal({ children }: ModalProps) {
                     </Button>
                 </div>
 
-                <div className="max-h-[90vh] overflow-x-auto p-6 pt-0">
+                <div className="max-h-[90vh] overflow-x-auto px-6">
                     {children}
                 </div>
             </div>

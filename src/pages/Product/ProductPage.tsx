@@ -1,35 +1,36 @@
 import { useParams } from 'react-router'
-import mockProductsData from '../../lib/mockProducts'
 import Button from '../../components/Button'
+import getProductById from '../../lib/getProductById'
 
 export default function ProductPage() {
     const { id } = useParams()
+    if (!id) return <p>Product not found</p>
 
-    const product = mockProductsData.find((p) => p.id === id)
+    const product = getProductById(id)
     if (!product) return <p>Product not found</p>
 
     return (
         <main className="flex h-full w-full items-start justify-center text-black">
             <div className="flex w-full flex-col gap-6 p-4 lg:grid lg:max-w-5xl lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-8 lg:p-6">
-                <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center lg:max-h-[40vh]">
                     <img
                         src={`/product-images/${product.image}`}
                         alt={product.title}
-                        className="max-w-full self-center object-cover"
+                        className="w-full max-w-md object-cover lg:h-full lg:w-fit lg:max-w-full"
                     />
                 </div>
 
                 <div className="flex flex-col gap-6 lg:p-8">
                     <div className="space-y-2">
-                        <h1 className="text-2xl font-bold lg:text-3xl">
+                        <h1 className="text-xl font-bold lg:text-3xl">
                             {product.title}
                         </h1>
-                        <p className="text-lg text-gray-500">
+                        <p className="text-md text-gray-500">
                             {product.category}
                         </p>
                     </div>
 
-                    <span className="text-2xl font-bold lg:text-3xl">
+                    <span className="text-xl font-bold lg:text-2xl">
                         {product.price}₽
                     </span>
 
