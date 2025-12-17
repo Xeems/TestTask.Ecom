@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from 'react-router'
 import type { ProductType } from '../types/ProductType'
+import Button from './Button'
 
 export default function ProductCard({
     id,
@@ -32,9 +33,9 @@ export default function ProductCard({
                 <p className="text-sm font-bold text-black">{price}₽</p>
             </div>
 
-            <button className="w-full" onClick={handlePoductClick}>
+            <Button className="w-full" onClick={handlePoductClick}>
                 Add to cart
-            </button>
+            </Button>
         </div>
     )
 }
