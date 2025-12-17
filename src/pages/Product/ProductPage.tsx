@@ -34,7 +34,9 @@ export default function ProductPage() {
                         {product.price}₽
                     </span>
 
-                    <Button className="h-12 text-lg font-semibold lg:h-14 lg:text-xl">
+                    <Button
+                        className="h-12 text-lg font-semibold lg:h-14 lg:text-xl"
+                        onClick={() => alert('Поздравляем с покупкой')}>
                         Купить
                     </Button>
                 </div>

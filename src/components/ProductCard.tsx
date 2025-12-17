@@ -19,7 +19,9 @@ export default function ProductCard({
     }
 
     return (
-        <div className="flex flex-col items-center justify-between gap-y-4 rounded-xl border border-solid border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-lg">
+        <div
+            onClick={handlePoductClick}
+            className="flex flex-col items-center justify-between gap-y-4 rounded-xl border border-solid border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-lg">
             <div className="flex h-52 items-center justify-center overflow-hidden">
                 <img
                     src={`/product-images/${image}`}
@@ -39,7 +41,12 @@ export default function ProductCard({
                     <p className="text-sm font-bold text-black">{price}₽</p>
                 </div>
 
-                <Button className="w-full" onClick={handlePoductClick}>
+                <Button
+                    className="w-full"
+                    onClick={(e) => {
+                        e.stopPropagation()
+                        handlePoductClick()
+                    }}>
                     Добавить в корзину
                 </Button>
             </div>
