@@ -1,73 +1,20 @@
-# React + TypeScript + Vite
+# Тестовое задание React + TypeScript + Vite + Tailwind
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+MainPage - главная (домашняя) страница, выводит карточки товаров, также позволяет сортировать товары по названию с помощью компонента SearchBar, товары загружаются через отдельный хук `useProductSearch` который принимает Search запрос, также реализован debouncing input. Список полученных товаров отрисовывается через `grid` в зависимости от размера экрана меняется количество колонок в списке товаров.
 
-Currently, two official plugins are available:
+ProductCard - отображает минимальную информацию о товаре, также по клику открывает модальное окно с полной информацией о товаре
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![alt text](readme/image-1.png)
 
-## React Compiler
+![alt text](readme/image-2.png)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+`Modal` - компонент обертка, отрисовывает любой переданный Children как модальное окно работает на `createPortal`, реализует подход _modal routes_, при открытии модального окна меняется маршрут, при закрытии окна ссылка сайт возвращается на предыдущую страницу. Также страницу товара можно открыть как обычное окно.
 
-## Expanding the ESLint configuration
+![alt text](readme/image.png)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+![alt text](readme/image-3.png)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Стилизация реализованна на Tailwind css
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Данные о товарах хранятся в lib/mockdata.json. Также Реализованны функции `getProductsData` для получения списка товаров и `getProductById` для получения одного товара по его id
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
